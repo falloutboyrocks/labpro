@@ -4,11 +4,11 @@ speech lab
 The following commands should be execute under directory lab/  
 
 1. wget LibriSpeech devset & setup directories  
-Commend: python2 setup.py  
+python2 setup.py  
 2. Do alignment and split LibriSpeech into word_unit  
 (This command will take hours to do alignment & has a lot of dependencies that I forgot :P)  
-Commend: python2 prepro.py  
+python2 prepro.py  
 3. Extract mfcc of word units and build up training data  
-Commend: python2 final/extract_mfcc.py  
+python2 final/extract_mfcc.py  
 4. Train a seq2seq model  
-Commend: python2 final/seq2seq.py  
+python2 final/seq2seq.py  
