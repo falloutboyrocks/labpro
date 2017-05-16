@@ -1,0 +1,28 @@
+import sys
+import os
+
+corp_path = '/home/joris/LibriSpeech'
+# move all files into the first level dir
+for dir1 in os.listdir(corp_path):
+    dir1_path = corp_path + '/' + dir1
+    for dir2 in os.listdir(dir1_path):
+	dir2_path = dir1_path + '/' + dir2
+	for file in os.listdir(dir2_path):
+	    file_path = dir2_path + '/' + file
+	    os.system('mv ' + file_path + ' ' + dir1_path)
+	os.system('rmdir ' + dir2_path)
+
+# produce tag for sound files
+for dir in os.listdir(corp_path):
+    dir_path = corp_path + '/' + dir
+    for file in os.listdir(dir_path):
+	if 'trans.txt' in file:
+	    with open(dir_path + '/' + file) as f:
+	        content = f.readlines()
+	    content = [x.strip() for x in content]
+	    for trans in content:
+		line = trans.split(' ')
+		f = open(line[0] + '.lab', 'w')
+		f.write(line[1])
+		f.close()
+	 
