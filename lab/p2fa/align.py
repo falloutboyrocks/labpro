@@ -581,10 +581,10 @@ def prep_scp(wavfile) :
     fw.close()
     
 def create_plp(hcopy_config) :  
-    os.system('/nfs/undergrad/03/b03902033/lab/htk/HTKTools/HCopy -T 1 -C ' + hcopy_config + ' -S tmp/codetr.scp')
+    os.system('htk/HTKTools/HCopy -T 1 -C ' + hcopy_config + ' -S tmp/codetr.scp')
     
 def viterbi(input_mlf, word_dictionary, output_mlf, phoneset, hmmdir) :
-    command = '/nfs/undergrad/03/b03902033/lab/htk/HTKTools/HVite -T 1 -a -m -I ' + input_mlf + ' -H ' + hmmdir + '/macros -H ' + hmmdir + '/hmmdefs  -S tmp/test.scp -i ' + output_mlf + ' -p 0.0 -s 5.0 ' + word_dictionary + ' ' + phoneset + ' > tmp/aligned.results'
+    command = 'htk/HTKTools/HVite -T 1 -a -m -I ' + input_mlf + ' -H ' + hmmdir + '/macros -H ' + hmmdir + '/hmmdefs  -S tmp/test.scp -i ' + output_mlf + ' -p 0.0 -s 5.0 ' + word_dictionary + ' ' + phoneset + ' > tmp/aligned.results'
     print command
     # command = 'HVite -T 1 -a -m -I ' + input_mlf + ' -H ' + hmmdir + '/macros -H ' + hmmdir + '/hmmdefs  -S ./tmp/test.scp -i ' + output_mlf + ' -p 0.0 -s 5.0 ' + word_dictionary + ' ' + phoneset
     os.system(command)
