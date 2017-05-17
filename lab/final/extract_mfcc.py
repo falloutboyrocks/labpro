@@ -26,8 +26,7 @@ for dir in os.listdir(word_path):
 	else:	# truncate if too long
 	    cutoff = len(mfcc_seq) - num_of_mfcc
 	    front = cutoff / 2
-	    back = cutoff - front
-	    mfcc_data.append(mfcc_seq[front:-back])
+	    mfcc_data.append(mfcc_seq[front:front+100])
 mfcc_mat = np.stack(mfcc_data, axis=0)
 np.save('final/mfcc_mat', mfcc_mat)
 

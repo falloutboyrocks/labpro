@@ -32,6 +32,7 @@ for i in range(len(true)):
     loss += tf.reduce_sum(tf.square(tf.subtract(pred[i], true[i])))
 optimizer = tf.train.RMSPropOptimizer(learning_rate).minimize(loss)
 
+output = open('seqout', 'w')
 init = tf.global_variables_initializer()
 with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
     sess.run(init)
@@ -46,11 +47,9 @@ with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
 		cur_ans[i] = np.append([np.zeros(mfcc_size)], cur_ans[i][:-1], axis=0)
 	    _, cost = sess.run([optimizer, loss], feed_dict={x:cur_in, y:cur_ans})
 	    if i % display_step == 0:
-		print '========================='
-                print 'Batch: %s' %(batch_num)
-		print 'Loss: %s' %(cost)
-		print '========================='
+                out.write('Batch: %s\n' %(batch_num))
+		out.write('Loss: %s\n' %(cost))
 		saver.save(sess, 'seq2seq')
-	    batch_num += batch_size
+	    batch_num += 1
 	    i += batch_size
 

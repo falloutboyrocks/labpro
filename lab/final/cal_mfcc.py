@@ -17,8 +17,9 @@ for dir in os.listdir(word_path):
 	total += 1
 
 accum = 0
+output = open('mfcc_stats', 'w')
 for len in sorted(chart):
     accum += chart[len] / float(total)
-    print '%s %s' % (len, accum)
+    output.write('%s %s\n' % (len, accum))
         
 
