@@ -8,7 +8,7 @@ hidden_size = 300
 input_size = 13
 training_epochs = 1000
 mfcc_size = 13
-display_step = 1
+display_step = 50
 
 mfcc_mat = np.load('final/mfcc_mat.npy') # [word_unit][time_step][value]
 mfcc_mat = mfcc_mat[:len(mfcc_mat) / batch_size * batch_size]
@@ -50,6 +50,6 @@ with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
                 out.write('Batch: %s\n' %(batch_num))
 		out.write('Loss: %s\n' %(cost))
 		saver.save(sess, 'seq2seq')
-	    batch_num += 1
+	    batch_num += display_step
 	    i += batch_size
 
